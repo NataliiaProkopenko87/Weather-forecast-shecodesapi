@@ -1,0 +1,82 @@
+.container-sm {
+  margin: 50px 100px;
+  padding: 10px;
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  background-image: url(images/night.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #ececec;
+  font-family: "Pacifico", cursive;
+  font-family: "Quicksand", sans-serif;
+}
+div.container-sm {
+  max-width: 650px;
+}
+p.emoji {
+  font-size: 45px;
+}
+.cities {
+  margin: 20px 10px;
+}
+
+.cities button {
+  text-decoration: none;
+  font-size: 18px;
+  margin: 15px;
+  color: #ececec;
+  border: none;
+  background: transparent;
+}
+.cities button:hover {
+  color: #f8da5b;
+}
+.input-group {
+  margin: 10px;
+}
+input.form-control {
+  border: 1px solid #247291;
+  border-radius: 10px;
+  color: #247291;
+}
+input.input-group-text {
+  border: 1px solid #247291;
+  border-radius: 10px;
+  color: #247291;
+  font-weight: bolder;
+  background: #f8da5b;
+  cursor: pointer;
+}
+input.input-group-text:hover {
+  opacity: 0.9;
+}
+.input-btn {
+  font-size: 18px;
+  color: #247291;
+  border: 1px solid #247291;
+  border-radius: 10px;
+  margin: 10px 10px;
+  padding: 5px 10px;
+  font-weight: bolder;
+}
+.input-btn:hover {
+  opacity: 0.9;
+}
+div.weather {
+  margin: 15px;
+}
+div.weather #description::first-letter {
+  text-transform: capitalize;
+}
+div.weather img {
+  margin-right: 5px;
+  height: 64px;
+  width: 64px;
+}
+div.forecast {
+  margin: 20px;
+}
+.small {
+  display: block;
+  text-align: center;
+}
