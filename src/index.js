@@ -45,6 +45,8 @@ function showWeather(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.daily[0].wind.speed
   );
+  document.querySelector("#icon").setAttribute("src",`http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png`);
+  document.querySelector("#icon").setAttribute("alt",response.data.daily[0].condition.description);
 }
 
 function searchWeather(city) {
