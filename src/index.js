@@ -9,7 +9,7 @@ function search(event) {
 document.querySelector("#search-form").addEventListener("submit", search);
 
 //Current date
-let now = new Date();
+/*--let now = new Date();
 
 let days = [
   "Sunday",
@@ -28,17 +28,49 @@ if (hours < 10) {
 let minutes = now.getMinutes();
 if (minutes < 10) {
   minutes = `0${minutes}`;
-}
+}--
 
 let currentDate = document.querySelector("#current-date");
-currentDate.innerHTML = `${day} ${hours}:${minutes}`;
+currentDate.innerHTML = `${day} ${hours}:${minutes}`;*/
 
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
 //Search weather
 function showWeather(response) {
   console.log(response);
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.daily[0].temperature.day);
   document.querySelector("#heading-city").innerHTML = response.data.city;
+  document.querySelector("#date").innerHTML = formatDay(response.data.daily[0].time);
   document.querySelector("#description").innerHTML =
     response.data.daily[0].condition.description;
   document.querySelector("#humidity").innerHTML = response.data.daily[0].temperature.humidity;
@@ -47,6 +79,29 @@ function showWeather(response) {
   );
   document.querySelector("#icon").setAttribute("src",`http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png`);
   document.querySelector("#icon").setAttribute("alt",response.data.daily[0].condition.description);
+
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function(forecastDay, index) {
+    if(index < 6) {
+      forecastHTML = forecastHTML + `<div class="col-2">
+      <div class="weather-forecast-date">${formatDay(forecastDay.time)}</div>
+      <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png" alt="" with="42" />
+      <div class="weather-forecast-temperatures">
+      <span class="weather-temperature-max">${Math.round(forecastDay.temperature.maximum)}°</span>
+      <span class="weather-temperatures-min">${Math.round(forecastDay.temperature.minimum)}°</span>
+      </div>
+      </div>
+    `;
+    }
+  });
+forecastHTML = forecastHTML + `<div>`;
+forecastElement.innerHTML = forecastHTML;
+
 }
 
 function searchWeather(city) {
@@ -74,8 +129,9 @@ function showPosition(position) {
 }
 
 function showCurrentWeather(response) {
+  console.log(response);
   document.querySelector("#heading-city").innerHTML = response.data.city;
-
+  document.querySelector("#date").innerHTML = formatDate(response.data.time * 1000);
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.temperature.current);
   document.querySelector("#description").innerHTML =
@@ -86,6 +142,30 @@ function showCurrentWeather(response) {
   );
 }
 
+//Daily forecast
+/*--function displayForecast(response) {
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function(forecastDay, index) {
+    if(index < 6) {
+      forecastHTML = forecastHTML + `<div class="col-2">
+      <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+      <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png" alt="" with="42" />
+      <div class="weather-forecast-temperatures">
+      <span class="weather-temperature-max">${Math.round(forecastDay.temperature.maximum)}°</span>
+      <span class="weather-temperatures-min">${Math.round(forecastDay.temperature.minimum)}°</span>
+      </div>
+      </div>
+    `;
+    }
+  });
+forecastHTML = forecastHTML + `<div>`;
+forecastElement.innerHTML = forecastHTML;
+}--*/
 document.querySelector(".input-btn").addEventListener("click", currentPosition);
 //select cities
 function weatherKyiv(event) {
