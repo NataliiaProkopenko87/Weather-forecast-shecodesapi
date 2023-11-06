@@ -92,7 +92,7 @@ function showWeather(response) {
       <div class="weather-forecast-date">${formatDay(forecastDay.time)}</div>
       <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${(forecastDay).condition.icon}.png" alt="" with="42" />
       <div class="weather-forecast-temperatures">
-      <span class="weather-temperature-max">${Math.round(forecastDay.temperature.maximum)}°</span>
+      <span class="weather-temperature-max">${Math.round(forecastDay.temperature.maximum)}° </span>
       <span class="weather-temperatures-min">${Math.round(forecastDay.temperature.minimum)}°</span>
       </div>
       </div>

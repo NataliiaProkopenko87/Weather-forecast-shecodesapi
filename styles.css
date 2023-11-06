@@ -80,3 +80,15 @@ div.forecast {
   display: block;
   text-align: center;
 }
+.weather-forecast {
+  text-align: center;
+  margin-top: 20px;
+}
+.weather-forecast-temperatures {
+  font-weight: bold;
+}
+.weather-temperatures-min {
+  opacity:0.8;
+  font-weight: normal;
+  color: #f8da5b;
+}
